@@ -1,70 +1,173 @@
-/* Custom styles combining Discord and Windows 11 elements */
 body {
-    background-color: #2C2F33;
-    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #333;
+    color: #fff;
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+    animation: fadeIn 1s ease-in-out;
+}
+/* Кнопки */
+button {
+    margin: 0;
+    padding: 0.8em 1em;
+    outline: none;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: none;
+    text-transform: uppercase;
+    background-color: #333;
+    border-radius: 10px;
+    color: #fff;
+    font-weight: 300;
+    font-size: 18px;
+    font-family: inherit;
+    z-index: 0;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
 }
 
-.header {
-    background-color: #36393F;
-    padding: 10px 0;
+button:hover {
+    animation: sh0 0.5s ease-in-out both;
+}
+
+@keyframes sh0 {
+    0% {
+        transform: rotate(0deg) translate3d(0, 0, 0);
+    }
+    25% {
+        transform: rotate(7deg) translate3d(0, 0, 0);
+    }
+    50% {
+        transform: rotate(-7deg) translate3d(0, 0, 0);
+    }
+    75% {
+        transform: rotate(1deg) translate3d(0, 0, 0);
+    }
+    100% {
+        transform: rotate(0deg) translate3d(0, 0, 0);
+    }
+}
+
+/* акв кноп */
+.nav-link.active {
+    color: #0078D4;
+    font-weight: bold;
+}
+
+/* слизь бар*/
+.sidebar {
+    background-color: #222;
+    height: 100vh;
+    width: 200px;
+    position: fixed;
+    top: 0;
+    left: 0; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: left 0.3s ease;
+}
+
+.sidebar.active {
+    left: 0; 
+}
+
+.sidebar.hidden {
+    width: 0; 
+}
+
+.sidebar .header {
     text-align: center;
+    padding: 20px 0;
+}
+
+.sidebar .header h1 {
+    margin: 0;
+    color: #FEFFEA;
+    font-size: 28px;
+}
+
+.sidebar .nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.sidebar .nav a {
+    color: #FEFFEA;
+    text-decoration: none;
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+.sidebar:not(.active) {
+    transform: translateX(-200px);
+}
+
+/* контейнер */
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #444;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    animation: slideUp 1s ease-in-out;
+}
+
+/*анимки */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-100%); }
+    to { transform: translateY(0); }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
+
+/* заголовок */
+.header {
+    background-color: #222;
+    text-align: center;
+    padding: 20px 0;
 }
 
 .header h1 {
-    font-size: 36px;
     margin: 0;
+    color: #FEFFEA;
+    font-size: 28px;
 }
 
 .nav {
+    background-color: #222;
     display: flex;
     justify-content: center;
-    background-color: #2C2F33;
     padding: 10px 0;
+    animation: slideIn 1s ease-in-out;
 }
 
 .nav a {
-    color: #ffffff;
+    color: #FEFFEA;
     text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 5px;
     margin: 0 10px;
-    font-weight: bold;
-    transition: background-color 0.3s;
+    font-size: 18px;
 }
 
 .nav a:hover {
-    background-color: #40444B;
-}
-.header {
-    background-color: #40444B;
-    color: white;
-    text-align: center;
-    padding: 10px;
+    color: #0078D4;
 }
 
-.nav {
-    background-color: #333;
-    overflow: hidden;
-}
-
-.nav a {
-    float: left;
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-.nav a:hover {
-    background-color: #ddd;
-    color: black;
-}
-
-/* Стили для участников */
+/* участники */
 .members {
     display: flex;
     flex-wrap: wrap;
@@ -72,73 +175,49 @@ body {
 }
 
 .member {
-    width: 200px;
-    margin: 10px;
-    padding: 10px;
-    background-color: #40444B;
-    border-radius: 5px;
-    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
+    padding: 20px;
+    margin: 10px;
+    background-color: #555;
+    border-radius: 5px;
+    width: 200px;
+    animation: fadeIn 1s ease-in-out;
 }
 
 .member img {
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    margin: 0 auto 10px;
-    display: block;
+    object-fit: cover;
+    margin-bottom: 10px;
 }
 
 .member h3 {
-    margin: 0;
-    font-size: 1.2em;
+    font-size: 18px;
+    margin-bottom: 5px;
+    color: #FEFFEA;
 }
 
 .member p {
-    margin: 5px 0;
-    color: #666;
-}
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #36393F;
-    border-radius
-}
-/* Стили для формы анкеты */
-.form-container {
-    margin-top: 20px;
-    text-align: center;
+    margin: 0;
+    color: #ddd;
 }
 
-.form-container label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: #7289DA;
-    font-size: 1.2em;
+/* крутилка */
+body::-webkit-scrollbar {
+    width: 0.5em;
 }
 
-.form-container input,
-.form-container textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1em;
+body::-webkit-scrollbar-track {
+    background: #222;
 }
 
-.form-container button {
-    background-color: #7289DA;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1.1em;
+body::-webkit-scrollbar-thumb {
+    background-color: #555;
+    border-radius: 10px;
 }
 
-.form-container button:hover {
-    background-color: #677BC4;
+body::-webkit-scrollbar-thumb:hover {
+    background-color: #777;
 }
+
